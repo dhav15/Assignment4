@@ -1,5 +1,5 @@
 # CP386: Assignment 4
-# Motivation
+## Motivation
 # Installation
 # Screenshots
 # Contribution
