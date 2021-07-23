@@ -7,8 +7,8 @@
 ## Tests
 ## Code Example
 ## Authors
-Dhavani Patel
-Judy Praught
+* Dhavani Patel
+* Judy Praught
 ## Credits
 ## License
  
