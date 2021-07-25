@@ -18,6 +18,7 @@ int allocation[5][4];
 int need[5][4];
 
 int readFile();
+int resourceRequest(char *command);
 
 int main(int argc, char *argv[]){
 
@@ -92,8 +93,9 @@ int safetyAlgorithm(){
 	return 0;
 }
 
-int resourceRequest() {
-
+int resourceRequest(char *command) {
+	printf("Command: %s",command );
+	printf("\n");
 	return 0; //if successful, else return -1
 }
 
