@@ -28,3 +28,7 @@ int safetyAlgorithm(){
 void resourceRequest() {
 
 }
+
+void resourceRelease() {
+
+}
