@@ -39,7 +39,22 @@ int main(int argc, char *argv[]){
 			}
 		}
 	}
-	printf("Enter Command: ");
+	char command[20];
+	while(1){
+		
+		printf("Enter Command: ");
+		fgets(command, 20, stdin); 
+		command[strcspn(command, "\n")] = 0;
+		int exit = strcmp(command, "exit");
+		int RQ = strncmp(command, "RQ", 1);
+		if(exit == 0){
+			break;
+		}
+		else if(RQ == 0){
+			resourceRequest(command);
+		}
+
+	}
 	return 0;
 }
 
