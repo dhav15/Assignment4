@@ -146,10 +146,45 @@ int resourceRequest(char *command) {
 }
 
 int resourceRelease(char *command) {
+	int resources[4];
+	int i = 0, j, num, isAvail = 0;
+	char *token = strtok(command, " ");
+	if (strcmp(token, "RL") == 0) {
+		token = strtok(NULL, " ");
+		num = atoi(token);
+		printf("%d\n", num);
+		while (token != NULL) {
+			token = strtok(NULL, " ");
+			resources[i] = atoi(token);
+			i++;
+		}
+	}
 
+	for (j = 0; j < 4; j++) {
+		if (resources[j] > Max[num][j]) {
+			printf("ERROR: Threads cannot request more than maximum number of resource\n");
+			return -1;
+		}
+	}
 
-	printf("The resources have been released successfully\n");
-	return 0;
+	for (j = 0; j < 4; j++) {
+		if (resources[j] > available[j]) {
+			printf("ERROR: Resources are not available\n");
+			//thread wait
+			isAvail = 1;
+		}
+	}
+
+	if (isAvail == 1) {
+		for (j = 0; j < 4; j++) {
+			available[j] = available[j] + resources[j];
+			allocation[num][j] = allocation[num][j] - resources[j];
+			need[num][j] = need[num][j] + resources[j];
+		}
+		printf("The resources have been released successfully\n");
+	}
+
+	return 0; //if successful, else return -1
 }
 
 void printStatus() {
