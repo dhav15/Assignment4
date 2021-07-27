@@ -20,6 +20,7 @@ int need[5][4];
 void readFile();
 int resourceRequest(char *command);
 int resourceRelease(char *command);
+void printStatus();
 
 int main(int argc, char *argv[]){
 
@@ -56,8 +57,8 @@ int main(int argc, char *argv[]){
 			resourceRequest(command);
 		} else if (RL == 0) {
 			resourceRelease(command);
-		} else if (strcmp(command, "*") == 0) {
-			printf("Current values\n");
+		} else if (strncmp(command, "Status", 6) == 0) {
+			printStatus();
 		} else {
 			printf("ERROR: Please enter valid command\n");
 		}
@@ -138,6 +139,7 @@ int resourceRequest(char *command) {
 			allocation[num[[j] = allocation[num][j] + resources[j];
 			need[num][j] = need[num][j] - resources[j];
 		}
+		printf("State is safe, and request is satisfied\n");
 	}
 
 	return 0; //if successful, else return -1
@@ -145,5 +147,37 @@ int resourceRequest(char *command) {
 
 int resourceRelease(char *command) {
 
+
+	printf("The resources have been released successfully\n");
 	return 0;
+}
+
+void printStatus() {
+	int i, j;
+	printf("Available Resources:\n);
+	for (i = 0; i < 5; i++) {
+		printf("%d ", available[i]);
+	}
+	printf("\nMaximum Resources:\n);
+	for (i = 0; i < 5; i++) {
+		for (j = 0; j < 4; j++) {
+			printf("%d ", Max[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\nAllocated Resources:\n);
+	for (i = 0; i < 5; i++) {
+		for (j = 0; j < 4; j++) {
+			printf("%d ", allocation[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\nNeed Resources:\n);
+	for (i = 0; i < 5; i++) {
+		for (j = 0; j < 4; j++) {
+			printf("%d ", need[i][j]);
+		}
+		printf("\n");
+	}
+
 }
