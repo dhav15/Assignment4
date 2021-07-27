@@ -101,8 +101,45 @@ int safetyAlgorithm(){
 }
 
 int resourceRequest(char *command) {
-	printf("Command: %s",command );
-	printf("\n");
+	//printf("Command: %s",command);
+	//printf("\n");
+	int resources[4];
+	int i = 0, j, num, isAvail = 0;
+	char *token = strtok(command, " ");
+	if (strcmp(token, "RQ") == 0) {
+		token = strtok(NULL, " ");
+		num = token;
+		printf("%d\n", num);
+		while (token != NULL) {
+			token = strtok(NULL, " ");
+			resources[i] = token;
+			i++;
+		}
+	}
+
+	for (j = 0; j < 4; j++) {
+		if (resources[j] > Max[num][j]) {
+			printf("ERROR: Threads cannot request more than maximum number of resource\n");
+			return -1;
+		}
+	}
+
+	for (j = 0; j < 4; j++) {
+		if (resources[j] > available[j]) {
+			printf("ERROR: Resources are not available\n");
+			//thread wait
+			isAvail = 1;
+		}
+	}
+
+	if (isAvail == 1) {
+		for (j = 0; j < 4; j++) {
+			available = available - resources[j];
+			allocation[num[[j] = allocation[num][j] + resources[j];
+			need[num][j] = need[num][j] - resources[j];
+		}
+	}
+
 	return 0; //if successful, else return -1
 }
 
