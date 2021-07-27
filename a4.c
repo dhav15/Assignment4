@@ -17,8 +17,9 @@ int Max[5][4];
 int allocation[5][4];
 int need[5][4];
 
-int readFile();
+void readFile();
 int resourceRequest(char *command);
+int resourceRelease(char *command);
 
 int main(int argc, char *argv[]){
 
@@ -30,7 +31,7 @@ int main(int argc, char *argv[]){
 	}
 	printf("\nMaximum resources from file:\n");
 	readFile();
-	for(int i = 0; i < 5; i++){
+	for (int i = 0; i < 5; i++){
 		for(int j = 0; j < 4; j++){
 			if(j != 3){
 				printf("%c,", Max[i][j]);
@@ -41,27 +42,32 @@ int main(int argc, char *argv[]){
 		}
 	}
 	char command[20];
-	while(1){
+	while(1) {
 		
 		printf("Enter Command: ");
 		fgets(command, 20, stdin); 
 		command[strcspn(command, "\n")] = 0;
 		int exit = strcmp(command, "exit");
-		int RQ = strncmp(command, "RQ", 1);
-		if(exit == 0){
+		int RQ = strncmp(command, "RQ", 2);
+		int RL = strncmp(command, "RL", 2);
+		if (exit == 0){
 			break;
-		}
-		else if(RQ == 0){
+		} else if (RQ == 0){
 			resourceRequest(command);
+		} else if (RL == 0) {
+			resourceRelease(command);
+		} else {
+			printf("ERROR: Please enter valid command\n");
 		}
+		
 
 	}
 	return 0;
 }
 
-int readFile(){
+void readFile(){
 	//Get input array
-    	int one_dArray[39]= {0};
+	int one_dArray[39]= {0};
 	int count = 0;
 	//Read file
 	FILE *fp;
@@ -85,7 +91,6 @@ int readFile(){
 	}
 
 	memcpy(Max, one_dArray, 20 * sizeof(int));
-	return 0;
 }
 
 int safetyAlgorithm(){
@@ -99,7 +104,7 @@ int resourceRequest(char *command) {
 	return 0; //if successful, else return -1
 }
 
-int resourceRelease() {
+int resourceRelease(char *command) {
 
 	return 0;
 }
