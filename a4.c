@@ -56,6 +56,8 @@ int main(int argc, char *argv[]){
 			resourceRequest(command);
 		} else if (RL == 0) {
 			resourceRelease(command);
+		} else if (strcmp(command, "*") == 0) {
+			printf("Current values\n");
 		} else {
 			printf("ERROR: Please enter valid command\n");
 		}
