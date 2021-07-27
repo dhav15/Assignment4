@@ -109,11 +109,11 @@ int resourceRequest(char *command) {
 	char *token = strtok(command, " ");
 	if (strcmp(token, "RQ") == 0) {
 		token = strtok(NULL, " ");
-		num = token;
+		num = atoi(token);
 		printf("%d\n", num);
 		while (token != NULL) {
 			token = strtok(NULL, " ");
-			resources[i] = token;
+			resources[i] = atoi(token);
 			i++;
 		}
 	}
@@ -135,8 +135,8 @@ int resourceRequest(char *command) {
 
 	if (isAvail == 1) {
 		for (j = 0; j < 4; j++) {
-			available = available - resources[j];
-			allocation[num[[j] = allocation[num][j] + resources[j];
+			available[j] = available[j] - resources[j];
+			allocation[num][j] = allocation[num][j] + resources[j];
 			need[num][j] = need[num][j] - resources[j];
 		}
 		printf("State is safe, and request is satisfied\n");
@@ -154,30 +154,29 @@ int resourceRelease(char *command) {
 
 void printStatus() {
 	int i, j;
-	printf("Available Resources:\n);
-	for (i = 0; i < 5; i++) {
+	printf("Available Resources:\n");
+	for (i = 0; i < 4; i++) {
 		printf("%d ", available[i]);
 	}
-	printf("\nMaximum Resources:\n);
+	printf("\nMaximum Resources:\n");
 	for (i = 0; i < 5; i++) {
 		for (j = 0; j < 4; j++) {
 			printf("%d ", Max[i][j]);
 		}
 		printf("\n");
 	}
-	printf("\nAllocated Resources:\n);
+	printf("Allocated Resources:\n");
 	for (i = 0; i < 5; i++) {
 		for (j = 0; j < 4; j++) {
 			printf("%d ", allocation[i][j]);
 		}
 		printf("\n");
 	}
-	printf("\nNeed Resources:\n);
+	printf("Need Resources:\n");
 	for (i = 0; i < 5; i++) {
 		for (j = 0; j < 4; j++) {
 			printf("%d ", need[i][j]);
 		}
 		printf("\n");
 	}
-
 }
