@@ -97,25 +97,31 @@ void readFile(){
 }
 
 int safetyAlgorithm(){
-	int work[m], finish[n], safeSeq[n];
-	int i, j, x = 0, counter = 5;
-	for (i = 0; i < m; i++) {
+	int work[4], finish[5], safeSeq[5];
+	int i, j, k, x = 0;
+	for (i = 0; i < 4; i++) {
 		work[i] = available[i];
 	}
-	for (j = 0; j < n; j++) {
+	for (j = 0; j < 5; j++) {
 		finish[j] = 0;
 	}
-	int isSafe = 0;
-	while (counter > 0) {
-		for (i = 0; i < n; i++) {
+	while (x < 5) {
+		//int isSafe = 1;
+		for (i = 0; i < 5; i++) {
 			if (finish[i] == 0) {
-				for (j = 0; j < m; j++) {
-					if (need[i][j] <= work[j]) {
-						safeSeq[x] = i;
-						work[i][j] += allocation[j];
-						finish[i] = 1;
-						x++;
+				for (j = 0; j < 4; j++) {
+					if (need[i][j] > work[j]) {
+						//isSafe = 0;
+						break;
 					}
+				}
+				if (j == 4) {
+					safeSeq[x] = i;
+					for (k = 0; k < 4; k++) {
+						work[k] += allocation[i][k];
+					}
+					finish[i] = 1;
+					x++;
 				}
 
 			}
