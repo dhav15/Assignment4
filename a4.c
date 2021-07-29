@@ -16,11 +16,13 @@ int available[5];
 int Max[5][4];
 int allocation[5][4];
 int need[5][4];
+int safeSeq[5];
 
 void readFile();
 int resourceRequest(char *command);
 int resourceRelease(char *command);
 void printStatus();
+Void run();
 
 int main(int argc, char *argv[]){
 
@@ -48,17 +50,17 @@ int main(int argc, char *argv[]){
 		printf("Enter Command: ");
 		fgets(command, 20, stdin); 
 		command[strcspn(command, "\n")] = 0;
-		int exit = strcmp(command, "exit");
-		int RQ = strncmp(command, "RQ", 2);
-		int RL = strncmp(command, "RL", 2);
-		if (exit == 0){
+		
+		if (strcmp(command, "Exit") == 0){
 			break;
-		} else if (RQ == 0){
+		} else if (strncmp(command, "RQ", 2) == 0){
 			resourceRequest(command);
-		} else if (RL == 0) {
+		} else if (strncmp(command, "RL", 2) == 0) {
 			resourceRelease(command);
 		} else if (strncmp(command, "Status", 6) == 0) {
 			printStatus();
+		} else if (strncmp(command, "Run", 3) == 0) {
+			run();
 		} else {
 			printf("ERROR: Please enter valid command\n");
 		}
@@ -97,7 +99,7 @@ void readFile(){
 }
 
 int safetyAlgorithm(){
-	int work[4], finish[5], safeSeq[5];
+	int work[4], finish[5]; // safeSeq[5];
 	int i, j, k, x = 0;
 	for (i = 0; i < 4; i++) {
 		work[i] = available[i];
@@ -242,5 +244,34 @@ void printStatus() {
 			printf("%d ", need[i][j]);
 		}
 		printf("\n");
+	}
+}
+
+void run() {
+	int i, j;
+	printf("Safe Sequence is:");
+	for (i = 0; i < 5; i++) {
+		printf(" %d", safeSeq[i]);
+	}
+	printf("\n");
+	for (i = 0; i < 5; i++) {
+		printf("--> Customer/Thread %d", safeSeq[i]);
+		printf("Allocated resources: ");
+		for (j = 0; j < 4; j++) {
+			printf(" %d", allocation[j]);
+		}
+		printf("\nNeeded: ");
+		for (j = 0; j < 4; j++) {
+			printf(" %d", need[j]);
+		}
+		printf("Available: ");
+		for (j = 0; j < 4; j++) {
+			printf(" %d", available[j]);
+		}
+		printf("New Available: ");
+		for (j = 0; j < 4; j++) {
+			printf(" %d", available[j]);
+		}
+
 	}
 }
