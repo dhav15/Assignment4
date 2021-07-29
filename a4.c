@@ -22,7 +22,7 @@ void readFile();
 int resourceRequest(char *command);
 int resourceRelease(char *command);
 void printStatus();
-Void run();
+void run();
 
 int main(int argc, char *argv[]){
 
