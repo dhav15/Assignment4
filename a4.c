@@ -253,22 +253,21 @@ void run() {
 	for (i = 0; i < 5; i++) {
 		printf(" %d", safeSeq[i]);
 	}
-	printf("\n");
 	for (i = 0; i < 5; i++) {
-		printf("--> Customer/Thread %d", safeSeq[i]);
+		printf("\n--> Customer/Thread %d\n", safeSeq[i]);
 		printf("Allocated resources: ");
 		for (j = 0; j < 4; j++) {
-			printf(" %d", allocation[j]);
+			printf(" %d", allocation[i][j]);
 		}
 		printf("\nNeeded: ");
 		for (j = 0; j < 4; j++) {
-			printf(" %d", need[j]);
+			printf(" %d", need[i][j]);
 		}
-		printf("Available: ");
+		printf("\nAvailable: ");
 		for (j = 0; j < 4; j++) {
 			printf(" %d", available[j]);
 		}
-		printf("New Available: ");
+		printf("\nNew Available: ");
 		for (j = 0; j < 4; j++) {
 			printf(" %d", available[j]);
 		}
