@@ -271,6 +271,6 @@ void run() {
 		for (j = 0; j < 4; j++) {
 			printf(" %d", available[j]);
 		}
-
 	}
+	printf("\n");
 }
