@@ -131,91 +131,89 @@ int safetyAlgorithm(){
 	}
 	return 0;
 }
-
 int resourceRequest(char *command) {
-	//printf("Command: %s",command);
-	//printf("\n");
-	int resources[4];
-	int i = 0, j, num, isAvail = 0;
+	char resources[4];
+	
+	int num;
 	char *token = strtok(command, " ");
-	if (strcmp(token, "RQ") == 0) {
-		token = strtok(NULL, " ");
-		num = atoi(token);
-		printf("%d\n", num);
-		while (token != NULL) {
-			token = strtok(NULL, " ");
-			resources[i] = atoi(token);
-			i++;
-		}
+	int sucsess = 0;
+	
+	num = (command[3]- '0'); 
+	int j = 0;
+	for( int i = 0; i < 18; i++){
+		if( i > 3 && isdigit(command[i])){
+			resources[j] = (command[i] - '0');
+			j++; 
+			
+		} 
 	}
-
 	for (j = 0; j < 4; j++) {
-		if (resources[j] > Max[num][j]) {
-			printf("ERROR: Threads cannot request more than maximum number of resource\n");
-			return -1;
-		}
-	}
-
-	for (j = 0; j < 4; j++) {
+	
 		if (resources[j] > available[j]) {
 			printf("ERROR: Resources are not available\n");
 			//thread wait
-			isAvail = 1;
+			//isAvail = 1;
+			sucsess = -1;
+			break;
 		}
-	}
+	
+	
+		else if ((resources[j]) > (Max[num][j]- '0')) {
+			printf("ERROR: Threads cannot request more than maximum number of resource\n");
+			sucsess = -1;
+			break;
 
-	if (isAvail == 1) {
+		
+		}
+		
+	}
+	
+	if (sucsess == 0) {
 		for (j = 0; j < 4; j++) {
 			available[j] = available[j] - resources[j];
 			allocation[num][j] = allocation[num][j] + resources[j];
-			need[num][j] = need[num][j] - resources[j];
+			need[num][j] = (Max[num][j]- '0') - allocation[num][j];
 		}
 		printf("State is safe, and request is satisfied\n");
 	}
 
-	return 0; //if successful, else return -1
+	return sucsess; //if successful, else return -1
 }
 
 int resourceRelease(char *command) {
-	int resources[4];
-	int i = 0, j, num, isAvail = 0;
+	
+	char resources[4];
+	char match;
+	int num;
 	char *token = strtok(command, " ");
-	if (strcmp(token, "RL") == 0) {
-		token = strtok(NULL, " ");
-		num = atoi(token);
-		printf("%d\n", num);
-		while (token != NULL) {
-			token = strtok(NULL, " ");
-			resources[i] = atoi(token);
-			i++;
-		}
+	int sucsess = 0;
+	
+	num = (command[3]- '0'); 
+	int j = 0;
+	for( int i = 0; i < 18; i++){
+		if( i > 3 && isdigit(command[i])){
+			resources[j] = (command[i] - '0');
+			j++; 
+		} 
 	}
 
-	for (j = 0; j < 4; j++) {
-		if (resources[j] > Max[num][j]) {
-			printf("ERROR: Threads cannot request more than maximum number of resource\n");
-			return -1;
-		}
-	}
 
-	for (j = 0; j < 4; j++) {
-		if (resources[j] > available[j]) {
-			printf("ERROR: Resources are not available\n");
-			//thread wait
-			isAvail = 1;
+	for(int i = 0; i < 4; i++){
+		if (resources[i] <= allocation[num][i]){
+			available[i] = available[i] + resources[i];
+			allocation[num][i] = allocation[num][i] - resources[i];
+			need[num][i] = (Max[num][i]- '0') + allocation[num][i];	
+			}
+		else{
+			printf("ERROR: Cannot release unaquired resource\n");
+			sucsess = -1;
+			break;
+			}
+			
+				
 		}
-	}
 
-	if (isAvail == 1) {
-		for (j = 0; j < 4; j++) {
-			available[j] = available[j] + resources[j];
-			allocation[num][j] = allocation[num][j] - resources[j];
-			need[num][j] = need[num][j] + resources[j];
-		}
-		printf("The resources have been released successfully\n");
-	}
-
-	return 0; //if successful, else return -1
+	return sucsess; //if successful, else return -1
 }
 
 void printStatus() {
@@ -227,7 +225,7 @@ void printStatus() {
 	printf("\nMaximum Resources:\n");
 	for (i = 0; i < 5; i++) {
 		for (j = 0; j < 4; j++) {
-			printf("%d ", Max[i][j]);
+			printf("%d ", (Max[i][j]-'0'));
 		}
 		printf("\n");
 	}
