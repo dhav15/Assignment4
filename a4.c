@@ -257,11 +257,11 @@ void run() {
 		printf("\n--> Customer/Thread %d\n", safeSeq[i]);
 		printf("Allocated resources: ");
 		for (j = 0; j < 4; j++) {
-			printf(" %d", allocation[i][j]);
+			printf(" %d", allocation[safeSeq[i]][j]);
 		}
 		printf("\nNeeded: ");
 		for (j = 0; j < 4; j++) {
-			printf(" %d", need[i][j]);
+			printf(" %d", need[safeSeq[i]][j]);
 		}
 		printf("\nAvailable: ");
 		for (j = 0; j < 4; j++) {
