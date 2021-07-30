@@ -12,11 +12,13 @@ void printStatus(); -> Dhavani
 void run(); ->
 ## Features
 ## Tests
-## Code Example
-## Authors
+## Examples
+## About Developers
 * Dhavani Patel (@dhav15)
 * Judy Praught (@Judy-Praught)
 ## Credits
+Dhavani Patel  
+Judy Praught
 ## License
 Copyright (c) 2021 Dhavani Patel and Judy Praught  
   
