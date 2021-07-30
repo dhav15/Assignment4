@@ -21,6 +21,7 @@ int need[5][4];
 int safeSeq[5];
 
 void readFile();
+int safetyAlgorithm();
 int resourceRequest(char *command);
 int resourceRelease(char *command);
 void printStatus();
@@ -46,13 +47,13 @@ int main(int argc, char *argv[]){
 			}
 		}
 	}
+
 	char command[20];
 	while(1) {
-		
 		printf("Enter Command: ");
-		fgets(command, 20, stdin); 
+		fgets(command, 20, stdin);
 		command[strcspn(command, "\n")] = 0;
-		
+
 		if (strcmp(command, "Exit") == 0){
 			break;
 		} else if (strncmp(command, "RQ", 2) == 0){
@@ -66,8 +67,6 @@ int main(int argc, char *argv[]){
 		} else {
 			printf("ERROR: Please enter valid command\n");
 		}
-		
-
 	}
 	return 0;
 }
@@ -89,11 +88,9 @@ void readFile(){
 		if (fgets(line, 100, fp) != NULL) {
 			strncat(fileContent, line, strlen(line));
 		}
-
-
 	}
 	int j = 0;
-	for(int i = 0; i < 39; i = i +2){
+	for (int i = 0; i < 39; i = i +2){
 		one_dArray[j++] = fileContent[i];
 	}
 
@@ -101,7 +98,7 @@ void readFile(){
 }
 
 int safetyAlgorithm(){
-	int work[4], finish[5]; // safeSeq[5];
+	int work[4], finish[5];
 	int i, j, k, x = 0;
 	for (i = 0; i < 4; i++) {
 		work[i] = available[i];
@@ -110,12 +107,10 @@ int safetyAlgorithm(){
 		finish[j] = 0;
 	}
 	while (x < 5) {
-		//int isSafe = 1;
 		for (i = 0; i < 5; i++) {
 			if (finish[i] == 0) {
 				for (j = 0; j < 4; j++) {
 					if (need[i][j] > work[j]) {
-						//isSafe = 0;
 						break;
 					}
 				}
@@ -133,85 +128,80 @@ int safetyAlgorithm(){
 	}
 	return 0;
 }
+
 int resourceRequest(char *command) {
+
 	char resources[4];
-	
 	int num;
-	int sucsess = 0;
-	
-	num = (command[3]- '0'); 
+	int success = 0;
+
+	num = (command[3] - '0');
 	int j = 0;
 	for( int i = 0; i < 18; i++){
 		if( i > 3 && isdigit(command[i])){
 			resources[j] = (command[i] - '0');
-			j++; 
-			
-		} 
+			j++;
+
+		}
 	}
 	for (j = 0; j < 4; j++) {
-	
 		if (resources[j] > available[j]) {
 			printf("ERROR: Resources are not available\n");
-			//thread wait
-			//isAvail = 1;
-			sucsess = -1;
+			success = -1;
 			break;
 		}
-	
-	
-		else if ((resources[j]) > (Max[num][j]- '0')) {
+		else if ((resources[j]) > (Max[num][j] - '0')) {
 			printf("ERROR: Threads cannot request more than maximum number of resource\n");
-			sucsess = -1;
+			success = -1;
 			break;
-
-		
 		}
-		
+
 	}
-	
-	if (sucsess == 0) {
+
+	if (success == 0) {
 		for (j = 0; j < 4; j++) {
 			available[j] = available[j] - resources[j];
 			allocation[num][j] = allocation[num][j] + resources[j];
-			need[num][j] = (Max[num][j]- '0') - allocation[num][j];
+			need[num][j] = (Max[num][j] - '0') - allocation[num][j];
 		}
 		if (safetyAlgorithm() == 0)
 			printf("State is safe, and request is satisfied\n");
 	}
 
-	return sucsess; //if successful, else return -1
+	return success; //return 0 if successful, else return -1
 }
 
 int resourceRelease(char *command) {
-	
+
 	char resources[4];
 	int num;
-	int sucsess = 0;
-	
-	num = (command[3]- '0'); 
-	int j = 0;
-	for( int i = 0; i < 18; i++){
-		if( i > 3 && isdigit(command[i])){
+	int success = 0;
+
+	num = (command[3] - '0');
+	int i, j = 0;
+	for (i = 0; i < 18; i++) {
+		if (i > 3 && isdigit(command[i])) {
 			resources[j] = (command[i] - '0');
-			j++; 
-		} 
+			j++;
+		}
 	}
 
-
-	for(int i = 0; i < 4; i++){
+	for (i = 0; i < 4; i++){
 		if (resources[i] <= allocation[num][i]){
 			available[i] = available[i] + resources[i];
 			allocation[num][i] = allocation[num][i] - resources[i];
-			need[num][i] = (Max[num][i]- '0') + allocation[num][i];	
+			need[num][i] = (Max[num][i] - '0') + allocation[num][i];
 		} else {
 			printf("ERROR: Cannot release unaquired resource\n");
-			sucsess = -1;
+			success = -1;
 			break;
-		}	
-				
+		}
 	}
 
-	return sucsess; //if successful, else return -1
+	if (success == 0 && safetyAlgorithm() == 0)
+		printf("The resources have been released successfully\n");
+
+	return success; //return 0 if successful, else return -1
 }
 
 void printStatus() {
