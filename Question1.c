@@ -253,7 +253,6 @@ void* threadRun(void *t)
 	printf("    Thread is releasing resources");
 	for(int j = 0; j<5; j++){
 		available[j] = available[j] + allocation[safeSeq[a]][j];
-		printf("\nHere: %d", (9+1));
 	}
 
 	sem_post(&running);
