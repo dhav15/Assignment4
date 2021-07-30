@@ -10,6 +10,7 @@ Enter RQ values based on assignment outline:
 
 
 ![](Screenshots/EnterRQ.png)
+
 View status after resources requested:
 
 
@@ -17,12 +18,14 @@ View status after resources requested:
 
 
 ![](Screenshots/Status_after_RQ.png)
+
 Run:
 
 
 
 
 ![](Screenshots/Run.png)
+
 View status after resources after run:
 
 
