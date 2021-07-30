@@ -14,8 +14,8 @@ void run(); ->
 ## Tests
 ## Code Example
 ## Authors
-* Dhavani Patel
-* Judy Praught
+* Dhavani Patel (@dhav15)
+* Judy Praught (@Judy-Praught)
 ## Credits
 ## License
 Copyright (c) 2021 Dhavani Patel and Judy Praught  
