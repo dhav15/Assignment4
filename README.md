@@ -33,6 +33,12 @@ View status after resources after run:
 
 ![](Screenshots/Status_after_Run.png)
 
+Demo of resourceRelease, demonstraits failed and sucsessful release of a resource
+
+
+
+![](Screenshots/Demo_of_RL.png)
+
 ## Contribution
 int main(int argc, char *argv[]); -> Dhavani & Judy  
 void readFile(); -> Judy  
