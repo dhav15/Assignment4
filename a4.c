@@ -11,6 +11,8 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <semaphore.h>
+#include <ctype.h>
+
 
 int available[5];
 int Max[5][4];
@@ -135,7 +137,6 @@ int resourceRequest(char *command) {
 	char resources[4];
 	
 	int num;
-	char *token = strtok(command, " ");
 	int sucsess = 0;
 	
 	num = (command[3]- '0'); 
@@ -183,9 +184,7 @@ int resourceRequest(char *command) {
 int resourceRelease(char *command) {
 	
 	char resources[4];
-	char match;
 	int num;
-	char *token = strtok(command, " ");
 	int sucsess = 0;
 	
 	num = (command[3]- '0'); 
