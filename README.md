@@ -56,10 +56,15 @@ Execute Run with keyword Run
   - This will execute customers  as  threads  in  a  safe  se
 ## Tests
 Test code with assigment specified sequence for accurate conifration of functionality 
+
 RQ 0 1 0 0 1
+
 RQ 1 1 1 1 1
+
 RQ 2 2 2 2 2
+
 RQ 3 1 1 1 1
+
 RQ 4 1 0 0 0
 ## Examples
 ## About Developers
