@@ -1,6 +1,14 @@
-/*
- * Authors: Dhavani Patel (@dhav15) & Judy Praught (@Judy-Praught)
- * URL:
+/* 
+ * ----------------------------------------------
+ * Authors:
+ *    Name:       Dhavani Patel
+ *    Student ID: 180577400
+ *    GitHub ID:  @dhav15
+ *    Name:       Judy Praught
+ *    Student ID: 181944770
+ *    GitHub ID:  @Judy-Praught
+ * URL: https://github.com/dhav15/Assignment4
+ * ----------------------------------------------
  */
 
 #include <unistd.h>
