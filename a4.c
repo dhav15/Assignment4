@@ -175,7 +175,8 @@ int resourceRequest(char *command) {
 			allocation[num][j] = allocation[num][j] + resources[j];
 			need[num][j] = (Max[num][j]- '0') - allocation[num][j];
 		}
-		printf("State is safe, and request is satisfied\n");
+		if (safetyAlgorithm() == 0)
+			printf("State is safe, and request is satisfied\n");
 	}
 
 	return sucsess; //if successful, else return -1
@@ -202,15 +203,13 @@ int resourceRelease(char *command) {
 			available[i] = available[i] + resources[i];
 			allocation[num][i] = allocation[num][i] - resources[i];
 			need[num][i] = (Max[num][i]- '0') + allocation[num][i];	
-			}
-		else{
+		} else {
 			printf("ERROR: Cannot release unaquired resource\n");
 			sucsess = -1;
 			break;
-			}
-			
+		}	
 				
-		}
+	}
 
 	return sucsess; //if successful, else return -1
 }
