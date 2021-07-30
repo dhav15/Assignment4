@@ -2,6 +2,7 @@
 ## Motivation
 We are required to complete this assignment for our operating systems course.
 ## Installation
+Run with provided make file, may need to change main file to Question1.c to run.
 ## Screenshots
 ## Contribution
 int main(int argc, char *argv[]); -> Dhavani & Judy  
@@ -13,6 +14,17 @@ void printStatus(); -> Dhavani
 void run(); -> Dhavani  
 void *runner(void *param); -> Dhavani & Judy
 ## Features
+This program is a representation of a banker algorithm, it provides functions resourceRequest, resourceRelease, printStatus, and Run.
+
+Execute resourceRequest with RQ followed by 5 numbers(first being process id, last four being recources to be rquested)
+
+Execute resourceRequest with RQ followed by 5 numbers(first being process id, last four being recources to be resourceRelease)
+
+Execute printStatus with keyword Status
+  - Will show all current 2d arrays (available, Max, allocation, need)
+
+Execute Run with keyword Run
+  - This will execute customers  as  threads  in  a  safe  se
 ## Tests
 ## Examples
 ## About Developers
