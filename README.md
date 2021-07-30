@@ -37,7 +37,12 @@ Demo of resourceRelease, demonstraits failed and sucsessful release of a resourc
 
 
 
-![](Screenshots/Demo_of_RL.png)
+![](Screenshots/DemoRL1.png)
+
+
+
+
+![](Screenshots/DemoRL2.png)
 
 ## Contribution
 int main(int argc, char *argv[]); -> Dhavani & Judy  
