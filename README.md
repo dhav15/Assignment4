@@ -5,24 +5,32 @@ This is a project for CP:386 at Wilfrid Laurier University. This program simulat
 Run with provided make file, may need to change main file to Question1.c to run.
 ## Screenshots
 Enter RQ values based on assignment outline:
+
+
+
+
 ![](Screenshots/EnterRQ.png)
 
-
-
-
 View status after resources requested:
+
+
+
+
+
 ![](Screenshots/Status_after_RQ.png)
 
-
-
-
 Run:
+
+
+
+
 ![](Screenshots/Run.png)
 
-
-
-
 View status after resources after run:
+
+
+
+
 ![](Screenshots/Status_after_Run.png)
 
 ## Contribution
