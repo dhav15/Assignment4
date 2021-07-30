@@ -4,6 +4,9 @@ This is a project for CP:386 at Wilfrid Laurier University. This program simulat
 ## Installation
 Run with provided make file, may need to change main file to Question1.c to run.
 ## Screenshots
+![](Screenshots/EnterRQ.png)
+
+
 ## Contribution
 int main(int argc, char *argv[]); -> Dhavani & Judy  
 void readFile(); -> Judy  
