@@ -250,6 +250,8 @@ void run() {
 		pthread_create(&tid, NULL, runner, (void*)&(safeSeq[i]));
 		pthread_join(tid, NULL);
 	}
+	memset(allocation, 0, sizeof(allocation[0][0]) * 5 * 4);
+	memset(need, 0, sizeof(need[0][0]) * 5 * 4);
 	printf("\n");
 }
 
