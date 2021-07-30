@@ -14,7 +14,7 @@ void printStatus(); -> Dhavani
 void run(); -> Dhavani  
 void *runner(void *param); -> Dhavani & Judy
 ## Features
-Program is a representation of a banker algorithm, it provides functions resourceRequest, resourceRelease, printStatus, and Run.
+This program is a representation of a banker algorithm, it provides functions resourceRequest, resourceRelease, printStatus, and Run.
 
 Execute resourceRequest with RQ followed by 5 numbers(first being process id, last four being recources to be rquested)
 
