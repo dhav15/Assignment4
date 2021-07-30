@@ -9,10 +9,7 @@
 #include <string.h>
 #include <pthread.h>
 #include <sys/stat.h>
-#include <time.h>
-#include <semaphore.h>
 #include <ctype.h>
-
 
 int available[5];
 int Max[5][4];
@@ -26,6 +23,7 @@ int resourceRequest(char *command);
 int resourceRelease(char *command);
 void printStatus();
 void run();
+void *runner(void *param);
 
 int main(int argc, char *argv[]){
 
@@ -240,23 +238,37 @@ void run() {
 		printf(" %d", safeSeq[i]);
 	}
 	for (i = 0; i < 5; i++) {
-		printf("\n--> Customer/Thread %d\n", safeSeq[i]);
-		printf("    Allocated resources: ");
-		for (j = 0; j < 4; j++) {
-			printf(" %d", allocation[safeSeq[i]][j]);
-		}
-		printf("\n    Needed: ");
-		for (j = 0; j < 4; j++) {
-			printf(" %d", need[safeSeq[i]][j]);
-		}
-		printf("\n    Available: ");
-		for (j = 0; j < 4; j++) {
-			printf(" %d", available[j]);
-		}
-		printf("\n    New Available: ");
-		for (j = 0; j < 4; j++) {
-			printf(" %d", available[j]);
-		}
+		pthread_t tid;
+		pthread_create(&tid, NULL, runner, (void*)&(safeSeq[i]));
+		pthread_join(tid, NULL);
 	}
 	printf("\n");
+}
+
+void *runner(void *param) {
+	int j;
+	int* i = (int*)param;
+	printf("\n--> Customer/Thread %d\n", *i);
+	printf("    Allocated resources: ");
+	for (j = 0; j < 4; j++) {
+		printf(" %d", allocation[*i][j]);
+	}
+	printf("\n    Needed: ");
+	for (j = 0; j < 4; j++) {
+		printf(" %d", need[*i][j]);
+	}
+	printf("\n    Available: ");
+	for (j = 0; j < 4; j++) {
+		printf(" %d", available[j]);
+	}
+	printf("\n    Thread has started\n");
+	printf("    Thread has finished\n");
+	printf("    Thread is releasing resources\n");
+	printf("    New Available: ");
+	for (j = 0; j < 4; j++) {
+		available[j] += allocation[*i][j];
+		printf(" %d", available[j]);
+	}
+	pthread_exit(0);
+	return NULL;
 }
