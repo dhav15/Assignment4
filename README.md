@@ -58,7 +58,7 @@ Execute Run with keyword Run
 ## Examples
 ## About Developers
 * Dhavani Patel (@dhav15)
-* Judy Praught (@Judy-Praught)
+* Judy Praught (@Judy-Praught) - Had syncing issues with github, commits are less frequent (i.e. large amounts of code are added per commit)
 ## Credits
 Dhavani Patel  
 Judy Praught
