@@ -240,7 +240,7 @@ void printStatus() {
 }
 
 void run() {
-	int i, j;
+	int i;
 	printf("Safe Sequence is:");
 	for (i = 0; i < 5; i++) {
 		printf(" %d", safeSeq[i]);
