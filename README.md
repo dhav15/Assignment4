@@ -1,8 +1,8 @@
 # CP386: Assignment 4
 ## Motivation
-This is a project for CP:386 at Wilfrid Laurier University. This program simulates a Bankers algorithm, an algorithm used to avoid deadlocks in operating systems. 
+This is a project for CP386 at Wilfrid Laurier University. This program simulates a Banker's algorithm, an algorithm used to avoid deadlocks in operating systems. 
 ## Installation
-Run with provided make file, may need to change main file to Question1.c to run.
+Run with provided makefile, may need to change main file name to Question1.c to run.
 ## Screenshots
 Enter RQ values based on assignment outline:
 
